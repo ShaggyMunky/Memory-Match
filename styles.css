@@ -1,0 +1,126 @@
+/*--------------page containers----------------*/
+*{
+    margin: 0;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    overflow: hidden;
+}
+
+.container{
+    height: 100vh;
+    width: 100vw;
+}
+
+header{
+    position: relative;
+    margin: 0;
+    background-color: #5e5e5e;
+    height: 100px;
+    width: 100%;
+}
+
+#main{
+    position: relative;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #bce8f1;
+}
+
+/*--------------------header containers-------------------*/
+.title{
+    position: absolute;
+    margin: 0;
+    /*display: inline-block;*/
+    /*text-align: center;*/
+    color: #ffffff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo{
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 10px;
+    transform: translate(0, -50%);
+    height: 80px;
+    width: 80px;
+    background-color: #ffffff;
+}
+
+.settings{
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    right: 10px;
+    transform: translate(0, -50%);
+    height: 80px;
+    width: 80px;
+    background-color: #ffffff;
+}
+
+/*----------------stats container-----------------*/
+#stats{
+    position: relative;
+    float: left;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    width: 20%;
+    background-color: #1b6d85;
+}
+
+/*.games-played,*/
+/*.attempts,*/
+/*.accuracy,*/
+/*.reset{*/
+    /*position: relative;*/
+    /*text-align: center;*/
+/*}*/
+/*-----------game container---------------------*/
+
+#game-area{
+    position: relative;
+    float: left;
+    margin: 0;
+    height: 100%;
+    width: 60%;
+    background-color: #ac2925;
+}
+
+.game-aspect{
+    position: relative;
+    width: 80%;
+    padding-bottom: 60%;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: #2fb050;
+}
+.game-board{
+    position: absolute;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    top: 0; left: 0; right: 0; bottom: 0;
+}
+.card{
+    position: relative;
+    display: inline-block;
+    margin: 1%;
+    height: 24%;
+    width: 13%;
+}
+
+.back, .front{
+    position: absolute;
+    height: 100%;
+}
+
