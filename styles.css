@@ -91,9 +91,9 @@ header{
 
 .game-aspect{
     position: relative;
-    width: 80%;
-    padding-bottom: 60%;
-    top: 12%;
+    width: 100%;
+    padding-bottom: 75%;
+    top: 1.5%;
     left: 50%;
     transform: translate(-50%, 0);
     background-color: #2fb050;
@@ -116,9 +116,15 @@ header{
 .back, .front{
     position: absolute;
     height: 100%;
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 .reveal{
     display: none;
 }
+
+/*.back{*/
+    /*opacity: 0.6;*/
+/*}*/
 

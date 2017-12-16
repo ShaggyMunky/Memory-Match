@@ -10,6 +10,7 @@ var gamesPlayed = 0;
 
 function main(){
     $(".game-board").on("click", ".hidden",getClickedCard);
+    generateCards();
     $(".reset").on("click", resetGame)
 
 
@@ -75,7 +76,7 @@ function toggleClicker(card){
 
 function calculateAccuracy() {
     // accuracy = (matchCounter / attempts * 100).toFixed(2);  //with decimals
-    accuracy = (matchCounter / attempts).toFixed(2) * 100;     //no decimals
+    accuracy = (matchCounter / attempts * 100).toFixed(0);     //no decimals
 }
 
 function displayStats(){
@@ -90,35 +91,53 @@ function resetGame(){
     attempts = 0;
     gamesPlayed++;
     $(".game-board").empty();
-    // var cardHolder = $("<div>").addClass("card hidden");
-    // var cardHolder1 = $("<div>").addClass("card hidden");
-    // var cardHolder2 = $("<div>").addClass("card hidden");
-    // var cardBack = $("<img src='images/game/cards/back_card.svg'>").addClass("back")
-    // var cardGreen = $("<img src='images/game/cards/green_card.svg'>").addClass("front");
-    // var cardRed = $("<img src='images/game/cards/red_card.svg'>").addClass("front");
-    // var redGroup = cardHolder.append(cardRed).append(cardBack);
-    // var greenGroup = cardHolder1.append(cardGreen).append(cardBack);
-    // // var someGroup = cardHolder2.append(cardGreen).append(cardBack);
-    // $(".game-board").append(redGroup);
-    // $(".game-board").append(greenGroup);
-    // // $(".game-board").append(someGroup);
     generateCards();
     displayStats();
 }
 
 function generateCards(){
-    var cardLibrary = ['images/game/cards/back_card.svg',
-                       'images/game/cards/green_card.svg',
-                       'images/game/cards/red_card.svg',
-                       'images/game/cards/green_card.svg',
-                       'images/game/cards/red_card.svg'];
+    var backImage = 'images/game/cards/back_card.svg';
+    var cardLibrary = [ 'images/game/cards/spinach.jpg',
+                        'images/game/cards/mushroom.jpg',
+                        'images/game/cards/olive.jpg',
+                        'images/game/cards/bell_pepper.jpg',
+                        'images/game/cards/sausage.jpg',
+                        'images/game/cards/bacon.jpg',
+                        'images/game/cards/pepperoni.jpg',
+                        'images/game/cards/artichoke.jpg',
+                        'images/game/cards/pineapple.jpg'];
 
-    for (var increment = 1; increment < 5; increment++){
+
+    var cardDuplicate = [];
+    for (var increment = 0; increment < cardLibrary.length; increment++){
+        cardDuplicate.push(cardLibrary[increment]);
+    }
+
+    var fullCards = cardLibrary.concat(cardDuplicate);
+
+    shuffleArray(fullCards);
+
+    for (increment = 0; increment < fullCards.length; increment++){
         var cardHolder = $("<div>").addClass("card hidden");
-        var cardBack = $("<img>").attr("src", cardLibrary[0]).addClass("back");
-        var cardFront = $("<img>").attr("src", cardLibrary[increment]).addClass("front");
+        var cardBack = $("<img>").attr("src", backImage).addClass("back");
+        var cardFront = $("<img>").attr("src", fullCards[increment]).addClass("front");
         var completeCard = cardHolder.append(cardFront).append(cardBack);
 
         $(".game-board").append(completeCard);
     }
+}
+
+function shuffleArray(array){
+    var m = array.length
+    var t;
+    var i;
+
+    while (m) {
+        i = Math.floor(Math.random() * m--);
+
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+    }
+    return array;
 }
