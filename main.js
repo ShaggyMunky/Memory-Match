@@ -98,14 +98,14 @@ function resetGame(){
 function generateCards(){
     var backImage = 'images/game/cards/back_card.svg';
     var cardLibrary = [ 'images/game/cards/spinach.jpg',
-                        'images/game/cards/mushroom.jpg',
-                        'images/game/cards/olive.jpg',
+                        'images/game/cards/mushroom.svg',
+                        'images/game/cards/olive.svg',
                         'images/game/cards/bell_pepper.jpg',
                         'images/game/cards/sausage.jpg',
                         'images/game/cards/bacon.jpg',
-                        'images/game/cards/pepperoni.jpg',
+                        'images/game/cards/pepperoni.svg',
                         'images/game/cards/artichoke.jpg',
-                        'images/game/cards/pineapple.jpg'];
+                        'images/game/cards/pineapple.svg'];
 
 
     var cardDuplicate = [];
@@ -128,16 +128,15 @@ function generateCards(){
 }
 
 function shuffleArray(array){
-    var m = array.length
-    var t;
-    var i;
+    var currentIndex = array.length;
+    var indexHolder;
+    var indexRandom;
 
-    while (m) {
-        i = Math.floor(Math.random() * m--);
-
-        t = array[m];
-        array[m] = array[i];
-        array[i] = t;
+    while (currentIndex) {
+        indexRandom = Math.floor(Math.random() * currentIndex--);
+        indexHolder = array[currentIndex];
+        array[currentIndex] = array[indexRandom];
+        array[indexRandom] = indexHolder;
     }
     return array;
 }

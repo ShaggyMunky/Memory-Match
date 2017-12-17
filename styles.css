@@ -1,12 +1,18 @@
+@font-face {
+    font-family: "Chalky Regular";
+    src: url("fonts/Chalky.otf") format("opentype");
+}
+
 /*--------------page containers----------------*/
 *{
     margin: 0;
 }
 body{
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
+    /*height: 100vh;*/
+    /*width: 100vw;*/
+    /*margin: 0;*/
     overflow: hidden;
+    display: block;
 }
 
 .container{
@@ -18,15 +24,17 @@ header{
     position: relative;
     margin: 0;
     background-color: #5e5e5e;
-    height: 100px;
+    height: 20vh;
     width: 100%;
 }
 
 #main{
     position: relative;
-    margin: 0;
-    height: 100%;
-    width: 100%;
+    margin: auto;
+    /*height: 100%;*/
+    /*width: 100%;*/
+    display: flex;
+    max-width: 1320px;
     background-color: #bce8f1;
 }
 
@@ -68,15 +76,60 @@ header{
 #stats{
     position: relative;
     float: left;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    text-align: center;
-    height: 100%;
+    display: block;
     width: 20%;
     background-color: #1b6d85;
 }
 
+.chalk-holder{
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 87%;
+    background-image: url("images/game/ChalkBoard.svg");
+    background-repeat: no-repeat;
+    background-size: 144% 100%;
+    background-position: 50% 10%;
+    background-color: black;
+}
+
+.games-played,
+.attempts,
+.accuracy{
+    position: absolute;
+    display: inline-block;
+    top: 17%;
+    left: 50%;
+    width: 50%;
+    height: 7%;
+    transform: translate(-50%, 0);
+}
+
+.label, .value{
+    position: relative;
+    text-align: center;
+    font-family: chalky, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.7em;
+    color: #fffff0;
+}
+
+.value{
+    font-size: 3.5em;
+    width: 100%;
+    height: 175%;
+    top: -24%;
+}
+
+
+.attempts{
+    top: 40%;
+}
+
+.accuracy{
+    top: 64%;
+}
 
 /*-----------game container---------------------*/
 
@@ -102,14 +155,15 @@ header{
     position: absolute;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: center;
+    align-content: center;
     top: 0; left: 0; right: 0; bottom: 0;
 }
 .card{
     position: relative;
     display: inline-block;
     margin: 1%;
-    height: 24%;
+    height: 18%;
     width: 13%;
 }
 
