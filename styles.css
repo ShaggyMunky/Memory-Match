@@ -2,6 +2,10 @@
     font-family: "Chalky Regular";
     src: url("fonts/Chalky.otf") format("opentype");
 }
+@font-face {
+    font-family: "Cortado Regular";
+    src: url("fonts/cortado.otf") format("opentype");
+}
 
 /*--------------page containers----------------*/
 *{
@@ -13,6 +17,7 @@ body{
     /*margin: 0;*/
     overflow: hidden;
     display: block;
+    background: url("images/game/background.svg") center / cover no-repeat;
 }
 
 .container{
@@ -23,7 +28,7 @@ body{
 header{
     position: relative;
     margin: 0;
-    background-color: #5e5e5e;
+    /*background-color: #5e5e5e;*/
     height: 20vh;
     width: 100%;
 }
@@ -35,7 +40,7 @@ header{
     /*width: 100%;*/
     display: flex;
     max-width: 1320px;
-    background-color: #bce8f1;
+    /*background-color: #bce8f1;*/
 }
 
 /*--------------------header containers-------------------*/
@@ -44,32 +49,46 @@ header{
     margin: 0;
     /*display: inline-block;*/
     /*text-align: center;*/
-    color: #ffffff;
+    font-family: cortado, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 5em;
+    color: #eadce2;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-shadow: 1px 1px #2a282b, 2px 2px #2f2d30, 3px 3px #3c393d;
 }
 
-.logo{
-    position: absolute;
-    margin: 0;
-    top: 50%;
-    left: 10px;
-    transform: translate(0, -50%);
-    height: 80px;
-    width: 80px;
-    background-color: #ffffff;
-}
+/*.logo{*/
+    /*position: absolute;*/
+    /*margin: 0;*/
+    /*top: 50%;*/
+    /*left: 10px;*/
+    /*transform: translate(0, -50%);*/
+    /*height: 80px;*/
+    /*width: 80px;*/
+    /*background-color: #ffffff;*/
+/*}*/
 
 .settings{
     position: absolute;
-    margin: 0;
-    top: 50%;
-    right: 10px;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    top: 100%;
+    left: 0;
+    right: 0;
     transform: translate(0, -50%);
-    height: 80px;
-    width: 80px;
-    background-color: #ffffff;
+    height: 20px;
+    width: 20%;
+    font-family: cortado, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.3em;
+    /*background-color: #ffffff;*/
 }
 
 /*----------------stats container-----------------*/
@@ -78,7 +97,7 @@ header{
     float: left;
     display: block;
     width: 20%;
-    background-color: #1b6d85;
+    /*background-color: #1b6d85;*/
 }
 
 .chalk-holder{
@@ -90,7 +109,7 @@ header{
     background-repeat: no-repeat;
     background-size: 144% 100%;
     background-position: 50% 10%;
-    background-color: black;
+    /*background-color: black;*/
 }
 
 .games-played,
@@ -139,7 +158,7 @@ header{
     margin: 0;
     height: 100%;
     width: 60%;
-    background-color: #ac2925;
+    /*background-color: #ac2925;*/
 }
 
 .game-aspect{
@@ -149,7 +168,7 @@ header{
     top: 1.5%;
     left: 50%;
     transform: translate(-50%, 0);
-    background-color: #2fb050;
+    /*background-color: #2fb050;*/
 }
 .game-board{
     position: absolute;

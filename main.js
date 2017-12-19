@@ -97,14 +97,14 @@ function resetGame(){
 
 function generateCards(){
     var backImage = 'images/game/cards/back_card.svg';
-    var cardLibrary = [ 'images/game/cards/spinach.jpg',
+    var cardLibrary = [ 'images/game/cards/spinach.svg',
                         'images/game/cards/mushroom.svg',
                         'images/game/cards/olive.svg',
-                        'images/game/cards/bell_pepper.jpg',
-                        'images/game/cards/sausage.jpg',
-                        'images/game/cards/bacon.jpg',
+                        'images/game/cards/bell_pepper.svg',
+                        'images/game/cards/sausage.svg',
+                        'images/game/cards/bacon.svg',
                         'images/game/cards/pepperoni.svg',
-                        'images/game/cards/artichoke.jpg',
+                        'images/game/cards/artichoke.svg',
                         'images/game/cards/pineapple.svg'];
 
 
