@@ -1,20 +1,17 @@
 $(document).ready(main);
-var firstCard = null;
-var secondCard = null;
-var matchCounter = 0;
-var possibleMatches = 2;
-var attempts = 0;
-var accuracy = 0;
-var gamesPlayed = 0;
+let firstCard = null;
+let secondCard = null;
+let matchCounter = 0;
+let possibleMatches = 2;
+let attempts = 0;
+let accuracy = 0;
+let gamesPlayed = 0;
 
 
 function main(){
-    $(".game-board").on("click", ".hidden",getClickedCard);
+    $(".game-board").on("click", ".hidden", getClickedCard);
     generateCards();
-    $(".reset").on("click", resetGame)
-
-
-
+    $(".reset").on("click", resetGame);
 }
 
 function getClickedCard(){
@@ -82,7 +79,7 @@ function calculateAccuracy() {
 function displayStats(){
     $(".games-played .value").text(gamesPlayed);
     $(".attempts .value").text(attempts);
-    var accuracyPercent = accuracy + "%";
+    const accuracyPercent = accuracy + "%";
     $(".accuracy .value").text(accuracyPercent);
 }
 function resetGame(){
@@ -96,8 +93,8 @@ function resetGame(){
 }
 
 function generateCards(){
-    var backImage = 'images/game/cards/back_card.svg';
-    var cardLibrary = [ 'images/game/cards/spinach.svg',
+    const backImage = 'images/game/cards/back_card.svg';
+    const cardImages = [ 'images/game/cards/spinach.svg',
                         'images/game/cards/mushroom.svg',
                         'images/game/cards/olive.svg',
                         'images/game/cards/bell_pepper.svg',
@@ -107,30 +104,23 @@ function generateCards(){
                         'images/game/cards/artichoke.svg',
                         'images/game/cards/pineapple.svg'];
 
+    const cardList = cardImages.concat(cardImages);
+    shuffleCardArray(cardList);
 
-    var cardDuplicate = [];
-    for (var increment = 0; increment < cardLibrary.length; increment++){
-        cardDuplicate.push(cardLibrary[increment]);
-    }
-
-    var fullCards = cardLibrary.concat(cardDuplicate);
-
-    shuffleArray(fullCards);
-
-    for (increment = 0; increment < fullCards.length; increment++){
-        var cardHolder = $("<div>").addClass("card hidden");
-        var cardBack = $("<img>").attr("src", backImage).addClass("back");
-        var cardFront = $("<img>").attr("src", fullCards[increment]).addClass("front");
-        var completeCard = cardHolder.append(cardFront).append(cardBack);
+    for (let index = 0; index < cardList.length; index++){
+        const cardHolder = $("<div>").addClass("card hidden");
+        const cardBack = $(`<img src="${backImage}">`).addClass("back");
+        const cardFront = $(`<img src="${cardList[index]}">`).addClass("front");
+        const completeCard = cardHolder.append(cardFront).append(cardBack);
 
         $(".game-board").append(completeCard);
     }
 }
 
-function shuffleArray(array){
-    var currentIndex = array.length;
-    var indexHolder;
-    var indexRandom;
+function shuffleCardArray(array){
+    let currentIndex = array.length;
+    let indexHolder;
+    let indexRandom;
 
     while (currentIndex) {
         indexRandom = Math.floor(Math.random() * currentIndex--);
