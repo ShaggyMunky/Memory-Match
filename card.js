@@ -1,15 +1,16 @@
 class Card {
-    constructor(frontImage, parentObj){
+    constructor(frontImage, backImage, parentObj){
         this.frontImage = frontImage;
+        this.backImage = backImage;
         this.parent = parentObj;
-        this.backImage = 'images/game/cards/back_card.svg';
-        this.revealed = false;
-        this.DomElement = null;
-        this.cardBack = null
-
+        this.cardBack = null;
+        this.flipped = false;
     }
 
     handleClick(){
+        if (this.flipped){
+            return;
+        }
         this.parent.handleChildClick(this);
     }
 
@@ -17,23 +18,17 @@ class Card {
         return this.frontImage
     }
 
-    revealFront(){
-        this.cardBack.hide();
-    }
-
-    hideFront(){
-        this.cardBack.show();
+    toggleCard(){
+        this.cardBack.toggleClass("reveal");
+        this.flipped = !this.flipped;
     }
 
     render(){
-        let card = $("<div>", {
-            "class": "card",
-        });
+        let card = $("<div>").addClass("card");
         card.click(this.handleClick.bind(this));
         let front = $(`<img src= ${this.frontImage}>`).addClass("front");
         let back = $(`<img src= ${this.backImage}>`).addClass("back");
         card.append(front, back);
-        this.DomElement = card;
         this.cardBack = back;
 
         return card;

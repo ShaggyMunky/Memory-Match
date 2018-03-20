@@ -1,58 +1,96 @@
 class MatchGame {
-    constructor(){
+    constructor(cardImages, cardBack, gameBoard){
         this.cards = [];
         this.matchCounter = 0;
         this.clickedCards = [];
         this.timeout = 750;
-        this.cardImages = [
-            'images/game/cards/spinach.svg',
-            'images/game/cards/mushroom.svg',
-            'images/game/cards/olive.svg',
-            'images/game/cards/bell_pepper.svg',
-            'images/game/cards/sausage.svg',
-            'images/game/cards/bacon.svg',
-            'images/game/cards/pepperoni.svg',
-            'images/game/cards/artichoke.svg',
-            'images/game/cards/pineapple.svg'
-        ];
+        this.accuracy = 0;
+        this.attempts = 0;
+        this.gamesPlayed = 0;
+        this.cardImages = cardImages;
+        this.cardBack = cardBack;
+        this.gameBoard = gameBoard
     }
 
     initializeGame(){
         const imageList = this.cardImages.concat(this.cardImages);
+        this.shuffleCardArray(imageList);
         this.cards = this.createCards(imageList);
-        console.log("Constructor cards", this.cards);
+    }
+
+    shuffleCardArray(array){
+        let currentIndex = array.length;
+
+        while (currentIndex) {
+            let indexRandom = Math.floor(Math.random() * currentIndex--);
+            let indexHolder = array[currentIndex];
+            array[currentIndex] = array[indexRandom];
+            array[indexRandom] = indexHolder;
+        }
+        return array;
     }
 
     createCards(imageArray){
-        let cardList;
-        return cardList = imageArray.map(image => {
-            const newCard = new Card(image, this);
-            $(".game-board").append(newCard.render());
-            return newCard;
-        });
+        const cardList = new Array(imageArray.length);
+        for (let index = 0; index < imageArray.length; index++){
+            const newCard = new Card(imageArray[index], this.cardBack, this);
+            cardList[index] = newCard;
+            $(this.gameBoard).append(newCard.render());
+        }
+        return cardList;
     }
 
     handleChildClick(cardChild){
-        console.log(cardChild);
         if (this.clickedCards.length < 2){
             this.clickedCards.push(cardChild);
-            cardChild.revealFront();
+            cardChild.toggleCard();
 
             if (this.clickedCards.length === 2){
                     if (this.clickedCards[0].checkFrontImage() === this.clickedCards[1].checkFrontImage()){
-                        console.log("match");
-                        this.clickedCards = [];
+                        this.resetClickedCards();
+                        this.matchCounter += 1;
+                        this.attempts += 1;
+                        this.calculateAccuracy();
+                        this.renderStats();
+                        if (this.cards.length / this.matchCounter === 2){
+                            setTimeout(this.playerWin(), this.timeout);
+                        }
                     } else {
-                        setTimeout(this.hideClickedCards.bind(this), this.timeout)
+                        this.attempts += 1;
+                        this.calculateAccuracy();
+                        this.renderStats();
+                        setTimeout(this.hideClickedCards.bind(this), this.timeout);
                     }
             }
         }
     }
 
+    calculateAccuracy() {
+        this.accuracy = (this.matchCounter / this.attempts * 100).toFixed(0);
+        console.log(this.accuracy);
+    }
+
+    playerWin(){
+        alert("you win");
+    }
+
     hideClickedCards(){
-        while (this.clickedCards.length){
-            this.clickedCards[0].hideFront();
-            this.clickedCards.splice(0, 1);
+        let index = 2;
+        while (index){
+            this.clickedCards[index - 1].toggleCard();
+            index--;
         }
+        this.resetClickedCards();
+    }
+
+    resetClickedCards(){
+        this.clickedCards = [];
+    }
+
+    renderStats(){
+        $(".games-played .value").text(this.gamesPlayed);
+        $(".attempts .value").text(this.attempts);
+        const accuracyPercent = this.accuracy + "%";
+        $(".accuracy .value").text(accuracyPercent);
     }
 }
