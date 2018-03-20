@@ -1,4 +1,5 @@
 $(document).ready(main);
+let game = null;
 let firstCard = null;
 let secondCard = null;
 let matchCounter = 0;
@@ -9,8 +10,10 @@ let gamesPlayed = 0;
 
 
 function main(){
+    game = new MatchGame();
+    game.initializeGame();
     $(".game-board").on("click", ".hidden", getClickedCard);
-    generateCards();
+    // generateCards();
     $(".reset").on("click", resetGame);
 }
 
@@ -88,7 +91,7 @@ function resetGame(){
     attempts = 0;
     gamesPlayed++;
     $(".game-board").empty();
-    generateCards();
+    // generateCards();
     displayStats();
 }
 
