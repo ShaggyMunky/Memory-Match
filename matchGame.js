@@ -16,11 +16,11 @@ class MatchGame {
         const imageList = this.cardImages.concat(this.cardImages);
         this.shuffleCardArray(imageList);
         this.cards = this.createCards(imageList);
+        $(".reset").on("click", this.resetGame.bind(this));
     }
 
     shuffleCardArray(array){
         let currentIndex = array.length;
-
         while (currentIndex) {
             let indexRandom = Math.floor(Math.random() * currentIndex--);
             let indexHolder = array[currentIndex];
@@ -46,21 +46,21 @@ class MatchGame {
             cardChild.toggleCard();
 
             if (this.clickedCards.length === 2){
-                    if (this.clickedCards[0].checkFrontImage() === this.clickedCards[1].checkFrontImage()){
-                        this.resetClickedCards();
-                        this.matchCounter += 1;
-                        this.attempts += 1;
-                        this.calculateAccuracy();
-                        this.renderStats();
-                        if (this.cards.length / this.matchCounter === 2){
-                            setTimeout(this.playerWin(), this.timeout);
-                        }
-                    } else {
-                        this.attempts += 1;
-                        this.calculateAccuracy();
-                        this.renderStats();
-                        setTimeout(this.hideClickedCards.bind(this), this.timeout);
+                if (this.clickedCards[0].checkFrontImage() === this.clickedCards[1].checkFrontImage()){
+                    this.resetClickedCards();
+                    this.matchCounter += 1;
+                    this.attempts += 1;
+                    this.calculateAccuracy();
+                    this.renderStats();
+                    if (this.cards.length / this.matchCounter === 2){
+                        setTimeout(this.playerWin(), this.timeout);
                     }
+                } else {
+                    this.attempts += 1;
+                    this.calculateAccuracy();
+                    this.renderStats();
+                    setTimeout(this.hideClickedCards.bind(this), this.timeout);
+                }
             }
         }
     }
@@ -85,6 +85,17 @@ class MatchGame {
 
     resetClickedCards(){
         this.clickedCards = [];
+    }
+
+    resetGame() {
+        $(this.gameBoard).empty();
+        this.matchCounter = 0;
+        this.clickedCards = [];
+        this.accuracy = 0;
+        this.attempts = 0;
+        this.gamesPlayed++;
+        this.renderStats();
+        this.initializeGame();
     }
 
     renderStats(){
