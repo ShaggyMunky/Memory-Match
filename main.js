@@ -16,6 +16,6 @@ $(document).ready(() => {
 
 
  const newGame = (cardImages, cardBack) => {
-     window.game = new MatchGame(cardImages, cardBack, document.querySelector(".game-board")).initializeGame();
+     window.game = new MatchGame(cardImages, cardBack).initializeGame();
      return game;
  };

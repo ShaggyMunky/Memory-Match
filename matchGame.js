@@ -1,5 +1,5 @@
 class MatchGame {
-    constructor(cardImages, cardBack, gameBoard){
+    constructor(cardImages, cardBack){
         this.cards = [];
         this.matchCounter = 0;
         this.clickedCards = [];
@@ -7,16 +7,17 @@ class MatchGame {
         this.accuracy = 0;
         this.attempts = 0;
         this.gamesPlayed = 0;
+        this.modalPopup = $(".modal");
+        this.gameBoard =$(".game-board");
         this.cardImages = cardImages;
         this.cardBack = cardBack;
-        this.gameBoard = gameBoard
+
     }
 
     initializeGame(){
         const imageList = this.cardImages.concat(this.cardImages);
         this.shuffleCardArray(imageList);
         this.cards = this.createCards(imageList);
-        $(".reset").on("click", this.resetGame.bind(this));
     }
 
     shuffleCardArray(array){
@@ -71,7 +72,9 @@ class MatchGame {
     }
 
     playerWin(){
-        alert("you win");
+        $(this.modalPopup).css("display", "block");
+        $(".modal-content p").text("That's-a nice-a pizza pie!");
+        $(".reset").click(this.resetGame.bind(this));
     }
 
     hideClickedCards(){
@@ -96,6 +99,7 @@ class MatchGame {
         this.gamesPlayed++;
         this.renderStats();
         this.initializeGame();
+        $(this.modalPopup).css("display", "none");
     }
 
     renderStats(){
